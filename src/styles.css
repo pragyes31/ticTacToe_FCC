@@ -14,7 +14,7 @@ body {
   align-items: center;
   flex-direction: column;
   width: 100vw;
-  height: 100vh;
+  height: 97vh;
   background: linear-gradient(141deg, #0fb8ad 10%, #1fc8db 51%, #2cb5e8 75%);
 }
 
@@ -29,7 +29,7 @@ body {
 
 .weapon {
   width: 60px;
-  height: 25px;
+  height: 20px;
 }
 
 .game-grid {
