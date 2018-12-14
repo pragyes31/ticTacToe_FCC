@@ -1,20 +1,37 @@
 import "./styles.css";
+const gridBoxes = document.querySelectorAll(".box");
 
 function createTicTacToeGame() {
   const weaponButtons = document.querySelectorAll(".weapon");
-  // console.log(weaponButtons);
+  const gridBoxesArray = Array.from(gridBoxes);
+
   let userWeapon = "";
   let botWeapon = "";
   const ticTacToe = {
     chooseWeapon: e => {
       userWeapon = e.target.innerHTML;
       botWeapon = userWeapon === "X" ? "O" : "X";
-      console.log({ userWeapon, botWeapon });
       weaponButtons.forEach(e => (e.disabled = true));
+    },
+    userDropsWeapon: e => {
+      if (userWeapon) {
+        e.target.innerHTML = userWeapon;
+        ticTacToe.botDropsWeapon();
+      }
+    },
+    botDropsWeapon: () => {
+      let emptyGridBoxes = gridBoxesArray.filter(gridBox => !gridBox.innerHTML);
+      let pickRandomBox =
+        emptyGridBoxes[Math.floor(Math.random(emptyGridBoxes.length))];
+      pickRandomBox.innerHTML = botWeapon;
+      console.log(pickRandomBox);
     }
   };
   weaponButtons.forEach(e =>
     e.addEventListener("click", ticTacToe.chooseWeapon)
+  );
+  gridBoxes.forEach(e =>
+    e.addEventListener("click", ticTacToe.userDropsWeapon)
   );
 }
 
