@@ -14,17 +14,18 @@ function createTicTacToeGame() {
       weaponButtons.forEach(e => (e.disabled = true));
     },
     userDropsWeapon: e => {
-      if (userWeapon) {
+      if (userWeapon && !e.target.innerHTML) {
         e.target.innerHTML = userWeapon;
         ticTacToe.botDropsWeapon();
       }
     },
     botDropsWeapon: () => {
       let emptyGridBoxes = gridBoxesArray.filter(gridBox => !gridBox.innerHTML);
+      console.log(emptyGridBoxes);
       let pickRandomBox =
-        emptyGridBoxes[Math.floor(Math.random(emptyGridBoxes.length))];
+        emptyGridBoxes[Math.floor(Math.random() * emptyGridBoxes.length)];
+      //console.log(pickRandomBox);
       pickRandomBox.innerHTML = botWeapon;
-      console.log(pickRandomBox);
     }
   };
   weaponButtons.forEach(e =>
