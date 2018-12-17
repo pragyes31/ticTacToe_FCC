@@ -16,16 +16,16 @@ function createTicTacToeGame() {
     userDropsWeapon: e => {
       if (userWeapon && !e.target.innerHTML) {
         e.target.innerHTML = userWeapon;
-        ticTacToe.botDropsWeapon();
+        setTimeout(ticTacToe.botDropsWeapon, 750);
       }
     },
     botDropsWeapon: () => {
       let emptyGridBoxes = gridBoxesArray.filter(gridBox => !gridBox.innerHTML);
-      console.log(emptyGridBoxes);
-      let pickRandomBox =
-        emptyGridBoxes[Math.floor(Math.random() * emptyGridBoxes.length)];
-      //console.log(pickRandomBox);
-      pickRandomBox.innerHTML = botWeapon;
+      if (emptyGridBoxes.length > 0) {
+        let pickRandomBox =
+          emptyGridBoxes[Math.floor(Math.random() * emptyGridBoxes.length)];
+        pickRandomBox.innerHTML = botWeapon;
+      }
     }
   };
   weaponButtons.forEach(e =>
