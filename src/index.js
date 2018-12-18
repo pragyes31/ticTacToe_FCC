@@ -3,6 +3,7 @@ import "./styles.css";
 function createTicTacToeGame() {
   const gridBoxes = document.querySelectorAll(".box");
   const weaponButtons = document.querySelectorAll(".weapon");
+  const restartButton = document.querySelector(".restart-game");
   const gridBoxesArray = Array.from(gridBoxes);
   let box1 = document.querySelectorAll(".box1");
   let box2 = document.querySelectorAll(".box2");
@@ -59,6 +60,12 @@ function createTicTacToeGame() {
       ticTacToe.emptyGridBoxes = gridBoxesArray.filter(
         gridBox => !gridBox.innerHTML
       );
+    },
+    restartGame: () => {
+      userWeapon = "";
+      botWeapon = "";
+      weaponButtons.forEach(e => (e.disabled = false));
+      gridBoxes.forEach(e => (e.innerHTML = ""));
     }
   };
   weaponButtons.forEach(e =>
@@ -67,6 +74,7 @@ function createTicTacToeGame() {
   gridBoxes.forEach(e =>
     e.addEventListener("click", ticTacToe.userDropsWeapon)
   );
+  restartButton.addEventListener("click", ticTacToe.restartGame);
 }
 
 const ticTacToeGame = createTicTacToeGame();
