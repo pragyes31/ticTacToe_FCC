@@ -45,7 +45,10 @@ function createTicTacToeGame() {
         e.target.innerHTML = !secondPlayerturn
           ? userWeapon
           : secondPlayerWeapon;
-        secondPlayerturn = !secondPlayerturn;
+        if (secondPlayerWeapon) {
+          secondPlayerturn = !secondPlayerturn;
+        }
+
         ticTacToe.checkForWin();
         setTimeout(ticTacToe.botDropsWeapon, 500);
         ticTacToe.checkForWin();
