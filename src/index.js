@@ -5,15 +5,15 @@ function createTicTacToeGame() {
   const weaponButtons = document.querySelectorAll(".weapon");
   const restartButton = document.querySelector(".restart-game");
   const gridBoxesArray = Array.from(gridBoxes);
-  let box1 = document.querySelectorAll(".box1");
-  let box2 = document.querySelectorAll(".box2");
-  const box3 = document.querySelectorAll(".box3");
-  const box4 = document.querySelectorAll(".box4");
-  const box5 = document.querySelectorAll(".box5");
-  const box6 = document.querySelectorAll(".box6");
-  const box7 = document.querySelectorAll(".box7");
-  const box8 = document.querySelectorAll(".box8");
-  const box9 = document.querySelectorAll(".box9");
+  // let box1 = document.querySelectorAll(".box1");
+  // let box2 = document.querySelectorAll(".box2");
+  // const box3 = document.querySelectorAll(".box3");
+  // const box4 = document.querySelectorAll(".box4");
+  // const box5 = document.querySelectorAll(".box5");
+  // const box6 = document.querySelectorAll(".box6");
+  // const box7 = document.querySelectorAll(".box7");
+  // const box8 = document.querySelectorAll(".box8");
+  // const box9 = document.querySelectorAll(".box9");
   let userWeapon = "";
   let botWeapon = "";
   const ticTacToe = {
@@ -36,7 +36,6 @@ function createTicTacToeGame() {
     },
 
     userDropsWeapon: e => {
-      console.log(box1.innerHTML);
       if (userWeapon && !e.target.innerHTML) {
         e.target.innerHTML = userWeapon;
         ticTacToe.checkForWin();
