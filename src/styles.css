@@ -18,14 +18,27 @@ body {
   background: linear-gradient(141deg, #0fb8ad 10%, #1fc8db 51%, #2cb5e8 75%);
 }
 
-.select-weapon {
+.select-weapon,
+.select-mode {
   width: 400px;
   height: 15vh;
   display: flex;
-  justify-content: space-around;
+  justify-content: space-evenly;
   background-color: #ddccbb;
   align-items: center;
   font-size: 17px;
+}
+
+.opponents {
+  display: flex;
+  flex-direction: column;
+}
+
+.opponent {
+  width: 75px;
+  height: 25px;
+  margin: 5px;
+  border-radius: 5px;
 }
 
 .weapon {

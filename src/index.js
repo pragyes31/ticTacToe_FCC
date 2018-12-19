@@ -59,6 +59,13 @@ function createTicTacToeGame() {
       ticTacToe.emptyGridBoxes = gridBoxesArray.filter(
         gridBox => !gridBox.innerHTML
       );
+      if (
+        document.querySelector(".box1").innerHTML === "X" &&
+        document.querySelector(".box2").innerHTML === "X" &&
+        document.querySelector(".box3").innerHTML === "X"
+      ) {
+        //player wins
+      }
     },
     restartGame: () => {
       userWeapon = "";
