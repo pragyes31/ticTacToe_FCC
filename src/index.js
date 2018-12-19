@@ -3,6 +3,7 @@ import "./styles.css";
 function createTicTacToeGame() {
   const gridBoxes = document.querySelectorAll(".box");
   const weaponButtons = document.querySelectorAll(".weapon");
+  const opponents = document.querySelectorAll(".opponent");
   const restartButton = document.querySelector(".restart-game");
   const gridBoxesArray = Array.from(gridBoxes);
   // let box1 = document.querySelectorAll(".box1");
@@ -16,30 +17,35 @@ function createTicTacToeGame() {
   // const box9 = document.querySelectorAll(".box9");
   let userWeapon = "";
   let secondPlayerWeapon = "";
-  let twoPlayerMode = false;
   let botWeapon = "";
+  let twoPlayerMode = false;
+  let secondPlayerturn = false;
   const ticTacToe = {
     emptyGridBoxes: "",
-    // gridBoxObj: {
-    //   box1: document.querySelectorAll(".box1"),
-    //   box2: document.querySelectorAll(".box2"),
-    //   box3: document.querySelectorAll(".box3"),
-    //   box4: document.querySelectorAll(".box4"),
-    //   box5: document.querySelectorAll(".box5"),
-    //   box6: document.querySelectorAll(".box6"),
-    //   box7: document.querySelectorAll(".box7"),
-    //   box8: document.querySelectorAll(".box8"),
-    //   box9: document.querySelectorAll(".box9")
-    // },
+    chooseOpponent: e => {
+      if (e.target.innerHTML === "Human") {
+        twoPlayerMode = true;
+      }
+      opponents.forEach(e => (e.disabled = true));
+    },
     chooseWeapon: e => {
       userWeapon = e.target.innerHTML;
-      botWeapon = userWeapon === "X" ? "O" : "X";
+      if (twoPlayerMode) {
+        secondPlayerWeapon = userWeapon === "X" ? "O" : "X";
+      } else {
+        botWeapon = userWeapon === "X" ? "O" : "X";
+      }
+      console.log(secondPlayerWeapon, botWeapon);
+      opponents.forEach(e => (e.disabled = true));
       weaponButtons.forEach(e => (e.disabled = true));
     },
 
     userDropsWeapon: e => {
-      if (userWeapon && !e.target.innerHTML) {
-        e.target.innerHTML = userWeapon;
+      if ((userWeapon || secondPlayerWeapon) && !e.target.innerHTML) {
+        e.target.innerHTML = !secondPlayerturn
+          ? userWeapon
+          : secondPlayerWeapon;
+        secondPlayerturn = !secondPlayerturn;
         ticTacToe.checkForWin();
         setTimeout(ticTacToe.botDropsWeapon, 500);
         ticTacToe.checkForWin();
@@ -72,7 +78,9 @@ function createTicTacToeGame() {
     restartGame: () => {
       userWeapon = "";
       botWeapon = "";
+      secondPlayerWeapon = "";
       weaponButtons.forEach(e => (e.disabled = false));
+      opponents.forEach(e => (e.disabled = false));
       gridBoxes.forEach(e => (e.innerHTML = ""));
     }
   };
@@ -83,6 +91,7 @@ function createTicTacToeGame() {
     e.addEventListener("click", ticTacToe.userDropsWeapon)
   );
   restartButton.addEventListener("click", ticTacToe.restartGame);
+  opponents.forEach(e => e.addEventListener("click", ticTacToe.chooseOpponent));
 }
 
 const ticTacToeGame = createTicTacToeGame();
