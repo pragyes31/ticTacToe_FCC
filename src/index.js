@@ -15,6 +15,8 @@ function createTicTacToeGame() {
   // const box8 = document.querySelectorAll(".box8");
   // const box9 = document.querySelectorAll(".box9");
   let userWeapon = "";
+  let secondPlayerWeapon = "";
+  let twoPlayerMode = false;
   let botWeapon = "";
   const ticTacToe = {
     emptyGridBoxes: "",

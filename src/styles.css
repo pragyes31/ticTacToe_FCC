@@ -35,10 +35,14 @@ body {
 }
 
 .opponent {
-  width: 75px;
+  width: 80px;
   height: 25px;
   margin: 5px;
   border-radius: 5px;
+  font-weight: bold;
+  background-color: #0fb8ad;
+  font-size: 14px;
+  color: #fff;
 }
 
 .weapon {
