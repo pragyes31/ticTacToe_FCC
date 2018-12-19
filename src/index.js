@@ -82,6 +82,8 @@ function createTicTacToeGame() {
       userWeapon = "";
       botWeapon = "";
       secondPlayerWeapon = "";
+      twoPlayerMode = false;
+      secondPlayerturn = false;
       weaponButtons.forEach(e => (e.disabled = false));
       opponents.forEach(e => (e.disabled = false));
       gridBoxes.forEach(e => (e.innerHTML = ""));
