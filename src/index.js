@@ -6,15 +6,6 @@ function createTicTacToeGame() {
   const opponents = document.querySelectorAll(".opponent");
   const restartButton = document.querySelector(".restart-game");
   const gridBoxesArray = Array.from(gridBoxes);
-  // let box1 = document.querySelectorAll(".box1");
-  // let box2 = document.querySelectorAll(".box2");
-  // const box3 = document.querySelectorAll(".box3");
-  // const box4 = document.querySelectorAll(".box4");
-  // const box5 = document.querySelectorAll(".box5");
-  // const box6 = document.querySelectorAll(".box6");
-  // const box7 = document.querySelectorAll(".box7");
-  // const box8 = document.querySelectorAll(".box8");
-  // const box9 = document.querySelectorAll(".box9");
   let userWeapon = "";
   let secondPlayerWeapon = "";
   let botWeapon = "";
@@ -66,10 +57,22 @@ function createTicTacToeGame() {
         pickRandomBox.innerHTML = botWeapon;
       }
     },
+    winningScenario: (gridBox1, gridBox2, gridBox3) => {
+      if (
+        (document.querySelector(".gridBox1").innerHTML === "X" &&
+          document.querySelector(".gridBox2").innerHTML === "X" &&
+          document.querySelector(".gridBox3").innerHTML === "X") ||
+        (document.querySelector(".gridBox1").innerHTML === "O" &&
+          document.querySelector(".gridBox2").innerHTML === "O" &&
+          document.querySelector(".gridBox3").innerHTML === "O")
+      ) {
+      }
+    },
     checkForWin: () => {
       ticTacToe.emptyGridBoxes = gridBoxesArray.filter(
         gridBox => !gridBox.innerHTML
       );
+      ticTacToe.winningScenario();
       if (
         document.querySelector(".box1").innerHTML === "X" &&
         document.querySelector(".box2").innerHTML === "X" &&
