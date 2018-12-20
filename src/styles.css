@@ -14,14 +14,14 @@ body {
   align-items: center;
   flex-direction: column;
   width: 100vw;
-  height: 97vh;
+  height: 98vh;
   background: linear-gradient(141deg, #0fb8ad 10%, #1fc8db 51%, #2cb5e8 75%);
 }
 
 .select-weapon,
 .select-mode {
   width: 400px;
-  height: 15vh;
+  height: 10vh;
   display: flex;
   justify-content: space-evenly;
   background-color: #ddccbb;
@@ -36,7 +36,7 @@ body {
 
 .opponent {
   width: 80px;
-  height: 25px;
+  height: 20px;
   margin: 5px;
   border-radius: 5px;
   font-weight: bold;
@@ -46,18 +46,18 @@ body {
 }
 
 .weapon {
-  width: 50px;
-  height: 50px;
+  width: 40px;
+  height: 40px;
   border-radius: 50%;
   background-color: #0fb8ad;
-  font-size: 30px;
+  font-size: 25px;
   color: #fff;
   font-weight: bold;
 }
 
 .game-grid {
-  width: 340px;
-  height: 310px;
+  width: 300px;
+  height: 270px;
   background-color: greenyellow;
   display: flex;
   flex-direction: column;
@@ -66,8 +66,8 @@ body {
 }
 
 .row {
-  width: 330px;
-  height: 100px;
+  width: 290px;
+  height: 85px;
   display: flex;
 }
 
@@ -76,8 +76,8 @@ body {
 }
 
 .box {
-  width: 110px;
-  height: 100px;
+  width: 100px;
+  height: 85px;
   display: flex;
   align-items: center;
   justify-content: center;

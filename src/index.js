@@ -59,27 +59,30 @@ function createTicTacToeGame() {
     },
     winningScenario: (gridBox1, gridBox2, gridBox3) => {
       if (
-        (document.querySelector(".gridBox1").innerHTML === "X" &&
-          document.querySelector(".gridBox2").innerHTML === "X" &&
-          document.querySelector(".gridBox3").innerHTML === "X") ||
-        (document.querySelector(".gridBox1").innerHTML === "O" &&
-          document.querySelector(".gridBox2").innerHTML === "O" &&
-          document.querySelector(".gridBox3").innerHTML === "O")
+        (document.querySelector(`.${gridBox1}`).innerHTML === "X" &&
+          document.querySelector(`.${gridBox2}`).innerHTML === "X" &&
+          document.querySelector(`.${gridBox3}`).innerHTML === "X") ||
+        (document.querySelector(`.${gridBox1}`).innerHTML === "O" &&
+          document.querySelector(`.${gridBox2}`).innerHTML === "O" &&
+          document.querySelector(`.${gridBox3}`).innerHTML === "O")
       ) {
+        document.querySelector(`.${gridBox1}`).style.color = "red";
+        document.querySelector(`.${gridBox2}`).style.color = "red";
+        document.querySelector(`.${gridBox3}`).style.color = "red";
       }
     },
     checkForWin: () => {
       ticTacToe.emptyGridBoxes = gridBoxesArray.filter(
         gridBox => !gridBox.innerHTML
       );
-      ticTacToe.winningScenario();
-      if (
-        document.querySelector(".box1").innerHTML === "X" &&
-        document.querySelector(".box2").innerHTML === "X" &&
-        document.querySelector(".box3").innerHTML === "X"
-      ) {
-        //player wins
-      }
+      ticTacToe.winningScenario("box1", "box2", "box3");
+      ticTacToe.winningScenario("box4", "box5", "box6");
+      ticTacToe.winningScenario("box7", "box8", "box9");
+      ticTacToe.winningScenario("box1", "box5", "box9");
+      ticTacToe.winningScenario("box3", "box5", "box7");
+      ticTacToe.winningScenario("box1", "box4", "box7");
+      ticTacToe.winningScenario("box2", "box5", "box8");
+      ticTacToe.winningScenario("box3", "box6", "box9");
     },
     restartGame: () => {
       userWeapon = "";
