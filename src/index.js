@@ -92,7 +92,10 @@ function createTicTacToeGame() {
       secondPlayerturn = false;
       weaponButtons.forEach(e => (e.disabled = false));
       opponents.forEach(e => (e.disabled = false));
-      gridBoxes.forEach(e => (e.innerHTML = ""));
+      gridBoxes.forEach(e => {
+        e.innerHTML = "";
+        e.style.color = "#000";
+      });
     }
   };
   weaponButtons.forEach(e =>
