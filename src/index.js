@@ -9,8 +9,19 @@ function createTicTacToeGame() {
   let userWeapon = "";
   let secondPlayerWeapon = "";
   let botWeapon = "";
+  let whoPlayedLast = "";
   let twoPlayerMode = false;
   let secondPlayerturn = false;
+  const winScenarioArray = [
+    [1, 2, 3],
+    [4, 5, 6],
+    [7, 8, 9],
+    [1, 4, 7],
+    [2, 5, 8],
+    [3, 6, 9],
+    [1, 5, 9],
+    [3, 5, 7]
+  ];
   const ticTacToe = {
     emptyGridBoxes: "",
     chooseOpponent: e => {
@@ -26,23 +37,20 @@ function createTicTacToeGame() {
       } else {
         botWeapon = userWeapon === "X" ? "O" : "X";
       }
-      console.log(secondPlayerWeapon, botWeapon);
-      opponents.forEach(e => (e.disabled = true));
+      //console.log(secondPlayerWeapon, botWeapon);
       weaponButtons.forEach(e => (e.disabled = true));
     },
 
     userDropsWeapon: e => {
-      if ((userWeapon || secondPlayerWeapon) && !e.target.innerHTML) {
+      if (userWeapon && !e.target.innerHTML) {
         e.target.innerHTML = !secondPlayerturn
           ? userWeapon
           : secondPlayerWeapon;
-        if (secondPlayerWeapon) {
-          secondPlayerturn = !secondPlayerturn;
-        }
+        whoPlayedLast = !secondPlayerturn ? userWeapon : secondPlayerWeapon;
+        if (secondPlayerWeapon) secondPlayerturn = !secondPlayerturn;
 
-        ticTacToe.checkForWin();
-        setTimeout(ticTacToe.botDropsWeapon, 500);
-        ticTacToe.checkForWin();
+        ticTacToe.winningScenario();
+        if (botWeapon) setTimeout(ticTacToe.botDropsWeapon, 500);
       }
     },
     botDropsWeapon: () => {
@@ -55,34 +63,21 @@ function createTicTacToeGame() {
             Math.floor(Math.random() * ticTacToe.emptyGridBoxes.length)
           ];
         pickRandomBox.innerHTML = botWeapon;
+        whoPlayedLast = botWeapon;
+        ticTacToe.winningScenario();
       }
     },
-    winningScenario: (gridBox1, gridBox2, gridBox3) => {
-      if (
-        (document.querySelector(`.${gridBox1}`).innerHTML === "X" &&
-          document.querySelector(`.${gridBox2}`).innerHTML === "X" &&
-          document.querySelector(`.${gridBox3}`).innerHTML === "X") ||
-        (document.querySelector(`.${gridBox1}`).innerHTML === "O" &&
-          document.querySelector(`.${gridBox2}`).innerHTML === "O" &&
-          document.querySelector(`.${gridBox3}`).innerHTML === "O")
-      ) {
-        document.querySelector(`.${gridBox1}`).style.color = "red";
-        document.querySelector(`.${gridBox2}`).style.color = "red";
-        document.querySelector(`.${gridBox3}`).style.color = "red";
-      }
-    },
-    checkForWin: () => {
-      ticTacToe.emptyGridBoxes = gridBoxesArray.filter(
-        gridBox => !gridBox.innerHTML
-      );
-      ticTacToe.winningScenario("box1", "box2", "box3");
-      ticTacToe.winningScenario("box4", "box5", "box6");
-      ticTacToe.winningScenario("box7", "box8", "box9");
-      ticTacToe.winningScenario("box1", "box5", "box9");
-      ticTacToe.winningScenario("box3", "box5", "box7");
-      ticTacToe.winningScenario("box1", "box4", "box7");
-      ticTacToe.winningScenario("box2", "box5", "box8");
-      ticTacToe.winningScenario("box3", "box6", "box9");
+    winningScenario: () => {
+      let didAnyoneWin = winScenarioArray.some(scenario => {
+        console.log(scenario);
+        var checkforWin = scenario.every(box => {
+          console.log(document.querySelector(`.box${box}`).innerHTML);
+          document.querySelector(`.box${box}`).innerHTML === whoPlayedLast;
+        });
+        //console.log(checkforWin);
+        return checkforWin;
+      });
+      console.log(`didAnyoneWin value is >>> ${didAnyoneWin}`);
     },
     restartGame: () => {
       userWeapon = "";
@@ -90,6 +85,7 @@ function createTicTacToeGame() {
       secondPlayerWeapon = "";
       twoPlayerMode = false;
       secondPlayerturn = false;
+      whoPlayedLast = "";
       weaponButtons.forEach(e => (e.disabled = false));
       opponents.forEach(e => (e.disabled = false));
       gridBoxes.forEach(e => {
