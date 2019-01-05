@@ -69,17 +69,21 @@ function createTicTacToeGame() {
     },
     winningScenario: () => {
       let didAnyoneWin = winScenarioArray.some(scenario => {
-        console.log(scenario);
-        var checkforWin = scenario.every(box => {
-          console.log(document.querySelector(`.box${box}`).innerHTML);
-          document.querySelector(`.box${box}`).innerHTML === whoPlayedLast;
+        let checkforWin = scenario.every(box => {
+          return (
+            document.querySelector(`.box${box}`).innerHTML === whoPlayedLast
+          );
         });
-        //console.log(checkforWin);
+        if (checkforWin) {
+          scenario.map(box => {
+            document.querySelector(`.box${box}`).style.color = "red";
+          });
+        }
         return checkforWin;
       });
-      console.log(`didAnyoneWin value is >>> ${didAnyoneWin}`);
     },
     restartGame: () => {
+      alert(`${whoPlayedLast} won this battle!!`);
       userWeapon = "";
       botWeapon = "";
       secondPlayerWeapon = "";
