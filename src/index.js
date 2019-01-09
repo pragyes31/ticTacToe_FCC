@@ -48,7 +48,6 @@ function createTicTacToeGame() {
           : secondPlayerWeapon;
         whoPlayedLast = !secondPlayerturn ? userWeapon : secondPlayerWeapon;
         if (secondPlayerWeapon) secondPlayerturn = !secondPlayerturn;
-
         ticTacToe.winningScenario();
         if (botWeapon) setTimeout(ticTacToe.botDropsWeapon, 500);
       }
@@ -81,9 +80,12 @@ function createTicTacToeGame() {
         }
         return checkforWin;
       });
+      if (didAnyoneWin) {
+        alert(`${whoPlayedLast} won this battle!!`);
+        ticTacToe.restartGame;
+      }
     },
     restartGame: () => {
-      alert(`${whoPlayedLast} won this battle!!`);
       userWeapon = "";
       botWeapon = "";
       secondPlayerWeapon = "";
